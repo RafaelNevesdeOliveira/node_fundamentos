@@ -1,45 +1,35 @@
-## Run Test
+# Comentários Explicativos
 
-```
-npm run test
-```
+## Stateful vs Stateless
 
-### Três A's
-- Definição: Esta etapa envolve a configuração do ambiente de teste. Aqui, você prepara tudo o que é necessário para executar o teste. Isso pode incluir criar objetos, configurar mocks, definir inputs e preparar o contexto necessário para o teste.
-Objetivo: Garantir que o teste tenha um ponto de partida definido e que todos os pré-requisitos para o teste sejam atendidos.
-Act (Agir):
+### Stateful
 
-- Definição: Esta é a etapa onde você executa a ação que deseja testar. Geralmente, isso envolve chamar um método ou função com os inputs preparados na etapa de Arrange.
-Objetivo: Executar a ação que está sendo testada para gerar um resultado. Esta é a parte do teste que realmente interage com o código que você está testando.
-Assert (Afirmar):
+- **Descrição**: Em um contexto de programação ou arquitetura de sistemas, "Stateful" refere-se a um design onde o estado é mantido ou persistido. Em aplicações stateful, a informação sobre o estado da sessão é guardada, permitindo que a mesma seja retomada ou referenciada em interações subsequentes.
+- **Exemplo**: Um aplicativo web que lembra o seu carrinho de compras entre as sessões é um exemplo de um sistema stateful.
 
-- Definição: Nesta etapa, você verificará os resultados da ação. Isso envolve comparar o resultado real com o resultado esperado. As assertivas são declarações que falham se a condição especificada não for verdadeira.
-Objetivo: Confirmar que o código que está sendo testado se comporta como esperado. As assertivas garantem que o resultado da ação atende aos critérios definidos na sua especificação.
+### Stateless
 
-## Exemplo prático
-```js
-function add(a, b) {
-    return a + b;
-}
+- **Descrição**: "Stateless" é um modelo onde não há retenção de estado entre as transações. Cada transação é tratada como independente e nova. Em sistemas stateless, a persistência de dados é realizada através de bancos de dados, arquivos de texto, ou outros métodos de armazenamento externo.
+- **Exemplo**: APIs RESTful são frequentemente stateless, tratando cada requisição HTTP como uma operação independente.
 
-// Teste da função add
-describe('add function', () => {
-    it('should add two numbers correctly', () => {
-        // Arrange
-        const num1 = 5;
-        const num2 = 3;
+## Conversão de Array para JSON
 
-        // Act
-        const result = add(num1, num2);
+- **Descrição**: A conversão de um array para JSON é um processo comum em programação web, onde estruturas de dados (como arrays) são convertidas em um formato JSON para fácil transmissão e interpretação em diferentes sistemas ou linguagens de programação.
+- **Exemplo**: Em JavaScript, isso é frequentemente feito usando `JSON.stringify(array)`.
 
-        // Assert
-        expect(result).toBe(8);
-    });
-});
+## Cabeçalhos (Headers)
 
-```
+- **Descrição**: Cabeçalhos são metadados em requisições e respostas HTTP. Eles fornecem informações adicionais sobre a transmissão de dados, como tipo de conteúdo, codificação, autorização, entre outros.
+- **Exemplo**: O cabeçalho `'Content-Type', 'application/json'` informa ao cliente que o conteúdo retornado está no formato JSON.
 
-## Explanação do exemplo
-- Arrange: Definimos num1 e num2 com valores que serão usados na soma.
-- Act: Chamamos a função add com num1 e num2 como argumentos.
-- Assert: Usamos expect para verificar se o resultado retornado pela função add é igual a 8.
+## HTTP Status Codes
+
+- **Descrição**: Os códigos de status HTTP são respostas padronizadas emitidas por um servidor na Internet para indicar o resultado de uma requisição feita pelo cliente. Eles ajudam a identificar se uma operação foi bem-sucedida, encontrou um erro, ou necessita de ação adicional.
+- **Exemplo**: O status `200 OK` indica sucesso, enquanto `404 Not Found` indica que o recurso solicitado não foi encontrado.
+
+## STREAMS
+
+- **Definição**: Conseguir ler pequenas partes de algo (tipo filme na Netflix)
+- **Tipos**: Temos dois tipos:
+- Writeble Stream (Netflix e Spotfy) onde vao mandando informacao aos poucos;
+- Readble streams (envio de uma planilha), onde o back vai lendo e processando os dados aos poucos
