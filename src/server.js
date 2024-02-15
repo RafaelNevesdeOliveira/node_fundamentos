@@ -1,28 +1,35 @@
-import http from 'node:http'
+import http from "node:http";
+import { json } from "./middlewares/json.js";
+import { Database } from "./database.js";
+import { randomUUID } from "node:crypto";
 
-const users = []
+const database = new Database();
 
-const server = http.createServer((req, res)=>{
-  const {method, url} = req
+const server = http.createServer(async (req, res) => {
+  const { method, url } = req;
 
-  if(method === 'GET' && url === '/users'){
+  // Middlewares, interceptado apos começar o codigo, note que é facil reconhecer porque sempre tem um req e res
+  await json(req, res);
 
-    return res
-      .setHeader('Content-type', 'application/json')
-      .end(JSON.stringify(users))
+  if (method === "GET" && url === "/users") {
+    const users = database.select("users");
+    return res.end(JSON.stringify(users));
   }
 
-  if(method === 'POST' && url === '/users'){
-    users.push({
-      id: 1,
-      name: 'Jonh Doe',
-      email: 'jonhdoe@example.com'
-    })
+  if (method === "POST" && url === "/users") {
+    const { name, email } = req.body;
 
-    return res.writeHead(201).end()
+    const user = {
+      id: randomUUID(),
+      name,
+      email,
+    };
+
+    database.insert("users", user);
+    return res.writeHead(201).end();
   }
 
-  return res.writeHead(404).end()
-})
+  return res.writeHead(404).end();
+});
 
-server.listen(3333)
+server.listen(3333);
